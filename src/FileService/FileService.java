@@ -1,9 +1,13 @@
 package FileService;
 
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 
 public class FileService {
-    public static String readFile(String filePath) throws IOException {
+    public String readFile(String filePath) throws IOException {
         StringBuilder content = new StringBuilder();
 
         try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
@@ -17,7 +21,7 @@ public class FileService {
         return content.toString();
     }
 
-    public static void writeFile(String filePath, String content) throws IOException {
+    public void writeFile(String filePath, String content) throws IOException {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(filePath))) {
             writer.write(content);
         }

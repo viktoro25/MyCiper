@@ -10,30 +10,38 @@ public class CLI {
     private static final String DECRYPT_COMMAND = "DECRYPT";
     private static final String BRUTE_FORCE_COMMAND = "BRUTE_FORCE";
 
+    private final CaesarCipher caesarCipher;
+    private final FileService fileService;
+
+    public CLI() {
+        caesarCipher = new CaesarCipher();
+        fileService = new FileService();
+    }
+
     public void processCommand(String[] args) {
         String command = args[0];
         String filePath = args[1];
         int key = Integer.parseInt(args[2]);
 
         try {
-            String text = FileService.readFile(filePath);
+            String text = fileService.readFile(filePath);
             String result;
 
             if (command.equals(ENCRYPT_COMMAND)) {
-                result = CaesarCipher.encrypt(text, key);
+                result = caesarCipher.encrypt(text, key);
                 filePath = addTagToFilePath(filePath, "[ENCRYPTED]");
             } else if (command.equals(DECRYPT_COMMAND)) {
-                result = CaesarCipher.decrypt(text, key);
+                result = caesarCipher.decrypt(text, key);
                 filePath = addTagToFilePath(filePath, "[DECRYPTED]");
             } else if (command.equals(BRUTE_FORCE_COMMAND)) {
-                result = CaesarCipher.bruteForce(text);
+                result = caesarCipher.bruteForce(text);
                 filePath = addTagToFilePath(filePath, "[BRUTE_FORCE]");
             } else {
                 System.out.println("Invalid command.");
                 return;
             }
 
-            FileService.writeFile(filePath, result);
+            fileService.writeFile(filePath, result);
             System.out.println("Operation completed successfully. Result saved to: " + filePath);
         } catch (IOException e) {
             System.out.println("An error occurred: " + e.getMessage());

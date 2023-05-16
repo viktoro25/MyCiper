@@ -1,6 +1,5 @@
 package Runner;
 
-
 import CLI.CLI;
 
 import java.util.Scanner;
@@ -16,26 +15,41 @@ public class Runner {
             // Запуск програми через IDE
             Scanner scanner = new Scanner(System.in);
 
+            System.out.print("Enter command (E - ENCRYPT, D - DECRYPT, B - BRUTE_FORCE): ");
+            String commandInput = scanner.nextLine();
+            String command;
 
-                System.out.print("Enter command (ENCRYPT, DECRYPT, BRUTE_FORCE): ");
-                String command = scanner.nextLine();
-
-                System.out.print("Enter file path: ");
-                String filePath = scanner.nextLine();
-
-                if (command.equalsIgnoreCase("ENCRYPT") || command.equalsIgnoreCase("DECRYPT")) {
-                    System.out.print("Enter key: ");
-                    int key = scanner.nextInt();
-                    scanner.nextLine(); // Прибрати символ нового рядка після введення числа
-
-                    cli.processCommand(new String[]{command, filePath, String.valueOf(key)});
-                } else if (command.equalsIgnoreCase("BRUTE_FORCE")) {
-                    cli.processCommand(new String[]{command, filePath});
-                } else {
+            switch (commandInput.toUpperCase()) {
+                case "E":
+                    command = "ENCRYPT";
+                    break;
+                case "D":
+                    command = "DECRYPT";
+                    break;
+                case "B":
+                    command = "BRUTE_FORCE";
+                    break;
+                default:
                     System.out.println("Invalid command.");
-                }
-
-                scanner.close();
+                    scanner.close();
+                    return;
             }
+
+            System.out.print("Enter file path: ");
+            String filePath = scanner.nextLine();
+
+            if (command.equalsIgnoreCase("ENCRYPT") || command.equalsIgnoreCase("DECRYPT")) {
+                System.out.print("Enter key: ");
+                int key = scanner.nextInt();
+                scanner.nextLine(); // Прибрати символ нового рядка після введення числа
+
+                cli.processCommand(new String[]{command, filePath, Integer.toString(key)});
+
+            } else if (command.equalsIgnoreCase("BRUTE_FORCE")) {
+                cli.processCommand(new String[]{command, filePath});
+            }
+
+            scanner.close();
         }
     }
+}

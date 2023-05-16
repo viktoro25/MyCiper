@@ -4,23 +4,31 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 public class CaesarCipher {
-    public static final ArrayList<Character> ALPHABET = new ArrayList<>(
-            Arrays.asList(
-                    'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L',
-                    'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X',
-                    'Y', 'Z','.',',','«','»','"','\'',':','!','?',' '
-            )
-    );
-    private static final String SPECIAL_CHARACTERS = ".,«»\":!?  ";
+    private final ArrayList<Character> alphabet;
+    private final String specialCharacters;
 
-    public static String encrypt(String text, int key) {
+    public CaesarCipher() {
+        alphabet = new ArrayList<>(
+                Arrays.asList(
+                        'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L',
+                        'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X',
+                        'Y', 'Z', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j',
+                        'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v',
+                        'w', 'x', 'y', 'z', '.', ',', '«', '»', '"', '\'', ':', '!',
+                        '?', ' '
+                )
+        );
+        specialCharacters = ".,«»\":!?  ";
+    }
+
+    public String encrypt(String text, int key) {
         StringBuilder result = new StringBuilder();
 
         for (char character : text.toCharArray()) {
             if (isEncryptableCharacter(character)) {
-                int index = ALPHABET.indexOf(Character.toUpperCase(character));
-                int encryptedIndex = (index + key) % ALPHABET.size();
-                char encryptedChar = ALPHABET.get(encryptedIndex);
+                int index = alphabet.indexOf(character);
+                int encryptedIndex = (index + key) % alphabet.size();
+                char encryptedChar = alphabet.get(encryptedIndex);
                 result.append(encryptedChar);
             } else {
                 result.append(character);
@@ -30,14 +38,14 @@ public class CaesarCipher {
         return result.toString();
     }
 
-    public static String decrypt(String text, int key) {
+    public String decrypt(String text, int key) {
         StringBuilder result = new StringBuilder();
 
         for (char character : text.toCharArray()) {
             if (isEncryptableCharacter(character)) {
-                int index = ALPHABET.indexOf(Character.toUpperCase(character));
-                int decryptedIndex = (index - key + ALPHABET.size()) % ALPHABET.size();
-                char decryptedChar = ALPHABET.get(decryptedIndex);
+                int index = alphabet.indexOf(character);
+                int decryptedIndex = (index - key + alphabet.size()) % alphabet.size();
+                char decryptedChar = alphabet.get(decryptedIndex);
                 result.append(decryptedChar);
             } else {
                 result.append(character);
@@ -47,17 +55,17 @@ public class CaesarCipher {
         return result.toString();
     }
 
-    public static String bruteForce(String text) {
+    public String bruteForce(String text) {
         StringBuilder result = new StringBuilder();
 
-        for (int key = 1; key < ALPHABET.size(); key++) {
+        for (int key = 1; key < alphabet.size(); key++) {
             result.append("Key ").append(key).append(": ").append(decrypt(text, key)).append("\n");
         }
 
         return result.toString();
     }
 
-    private static boolean isEncryptableCharacter(char character) {
-        return ALPHABET.indexOf(Character.toUpperCase(character)) != -1 || SPECIAL_CHARACTERS.indexOf(character) != -1;
+    private boolean isEncryptableCharacter(char character) {
+        return alphabet.contains(character) || specialCharacters.indexOf(character) != -1;
     }
 }

@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="MyCesarCiper:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/MyCesarCiper_jar</output-path>
+    <root id="archive" name="MyCesarCiper.jar">
+      <element id="module-output" name="MyCesarCiper" />
+    </root>
+  </artifact>
+</component>
