@@ -21,7 +21,11 @@ public class CLI {
     public void processCommand(String[] args) {
         String command = args[0];
         String filePath = args[1];
-        int key = Integer.parseInt(args[2]);
+        int key = 0; // Значення за замовчуванням для ключа
+
+        if (args.length > 2) {
+            key = Integer.parseInt(args[2]);
+        }
 
         try {
             String text = fileService.readFile(filePath);
@@ -47,6 +51,7 @@ public class CLI {
             System.out.println("An error occurred: " + e.getMessage());
         }
     }
+
 
     private String addTagToFilePath(String filePath, String tag) {
         int dotIndex = filePath.lastIndexOf(".");
