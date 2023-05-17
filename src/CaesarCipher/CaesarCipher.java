@@ -3,10 +3,17 @@ package CaesarCipher;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+/**
+ * The CaesarCipher class represents a simple implementation of the Caesar cipher algorithm.
+ * It can encrypt and decrypt text messages using a specified key.
+ */
 public class CaesarCipher {
     private final ArrayList<Character> alphabet;
     private final String specialCharacters;
 
+    /**
+     * Constructs a CaesarCipher object with the default English alphabet and special characters.
+     */
     public CaesarCipher() {
         alphabet = new ArrayList<>(
                 Arrays.asList(
@@ -21,6 +28,13 @@ public class CaesarCipher {
         specialCharacters = ".,«»\":!?  ";
     }
 
+    /**
+     * Encrypts the given text using the specified key.
+     *
+     * @param text The text to be encrypted.
+     * @param key  The encryption key.
+     * @return The encrypted text.
+     */
     public String encrypt(String text, int key) {
         StringBuilder result = new StringBuilder();
 
@@ -38,6 +52,13 @@ public class CaesarCipher {
         return result.toString();
     }
 
+    /**
+     * Decrypts the given text using the specified key.
+     *
+     * @param text The text to be decrypted.
+     * @param key  The decryption key.
+     * @return The decrypted text.
+     */
     public String decrypt(String text, int key) {
         StringBuilder result = new StringBuilder();
 
@@ -55,6 +76,12 @@ public class CaesarCipher {
         return result.toString();
     }
 
+    /**
+     * Performs a brute force decryption on the given text, trying all possible keys.
+     *
+     * @param text The text to be decrypted.
+     * @return The decrypted text for each possible key.
+     */
     public String bruteForce(String text) {
         StringBuilder result = new StringBuilder();
 
@@ -65,6 +92,12 @@ public class CaesarCipher {
         return result.toString();
     }
 
+    /**
+     * Checks if the given character is encryptable.
+     *
+     * @param character The character to be checked.
+     * @return {@code true} if the character is encryptable, {@code false} otherwise.
+     */
     private boolean isEncryptableCharacter(char character) {
         return alphabet.contains(character) || specialCharacters.indexOf(character) != -1;
     }

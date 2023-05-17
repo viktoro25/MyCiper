@@ -13,15 +13,23 @@ public class CLI {
     private final CaesarCipher caesarCipher;
     private final FileService fileService;
 
+    /**
+     * Constructs a CLI object.
+     */
     public CLI() {
         caesarCipher = new CaesarCipher();
         fileService = new FileService();
     }
 
+    /**
+     * Processes the given command and performs the corresponding operation.
+     *
+     * @param args The command-line arguments.
+     */
     public void processCommand(String[] args) {
         String command = args[0];
         String filePath = args[1];
-        int key = 0; // Значення за замовчуванням для ключа
+        int key = 0; // Default value for the key
 
         if (args.length > 2) {
             key = Integer.parseInt(args[2]);
@@ -52,7 +60,13 @@ public class CLI {
         }
     }
 
-
+    /**
+     * Adds a tag to the file path.
+     *
+     * @param filePath The original file path.
+     * @param tag      The tag to be added.
+     * @return The modified file path with the tag added.
+     */
     private String addTagToFilePath(String filePath, String tag) {
         int dotIndex = filePath.lastIndexOf(".");
         return filePath.substring(0, dotIndex) + tag + filePath.substring(dotIndex);
