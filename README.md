@@ -29,9 +29,9 @@ java -cp bin Runner
 
 The program will prompt you for a command and file path. You can choose from the following commands:
 
-- E or e: Encrypt
-- D or d: Decrypt
-- B or b: Brute Force
+- Encrypt
+- Decrypt
+- Brute Force
 
 After entering the command and file path, the program may prompt for additional information, such as the encryption key.
 
@@ -42,17 +42,17 @@ Once the command is executed successfully, the program will display a message in
 Here are some examples of how to use the program:
 
 - Encrypt a file:
-Enter command (E - ENCRYPT, D - DECRYPT, B - BRUTE_FORCE): E
+Enter command (ENCRYPT, DECRYPT, BRUTE_FORCE): ENCRYPT
 Enter file path: input.txt
 Enter key: 3
 
 - Decrypt a file:
-Enter command (E - ENCRYPT, D - DECRYPT, B - BRUTE_FORCE): D
+Enter command (ENCRYPT, DECRYPT, BRUTE_FORCE): DECRYPT
 Enter file path: encrypted.txt
 Enter key: 3
 
 - Brute force decryption:
-Enter command (E - ENCRYPT, D - DECRYPT, B - BRUTE_FORCE): B
+Enter command (ENCRYPT, DECRYPT, BRUTE_FORCE): BRUTE_FORCE
 Enter file path: encrypted.txt
 
 ## License
