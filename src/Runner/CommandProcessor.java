@@ -28,18 +28,18 @@ public class CommandProcessor {
      */
     public void processCommands() {
         do {
-            System.out.print("Enter command (E - ENCRYPT, D - DECRYPT, B - BRUTE_FORCE): ");
+            System.out.print("Enter command ([ENCRYPT],[DECRYPT],[BRUTE_FORCE]): ");
             String commandInput = scanner.nextLine();
-            String command;
+            String command ;
 
             switch (commandInput.toUpperCase()) {
-                case "E":
+                case "ENCRYPT":
                     command = "ENCRYPT";
                     break;
-                case "D":
+                case "DECRYPT":
                     command = "DECRYPT";
                     break;
-                case "B":
+                case "BRUTE_FORCE":
                     command = "BRUTE_FORCE";
                     break;
                 default:

@@ -8,7 +8,7 @@ import java.io.IOException;
 public class CLI {
     private static final String ENCRYPT_COMMAND = "ENCRYPT";
     private static final String DECRYPT_COMMAND = "DECRYPT";
-    private static final String BRUTE_FORCE_COMMAND = "BRUTE_FORCE";
+    private static final String BRUTE_FORCE = "BRUTE_FORCE";
 
     private final CaesarCipher caesarCipher;
     private final FileService fileService;
@@ -45,7 +45,7 @@ public class CLI {
             } else if (command.equals(DECRYPT_COMMAND)) {
                 result = caesarCipher.decrypt(text, key);
                 filePath = addTagToFilePath(filePath, "[DECRYPTED]");
-            } else if (command.equals(BRUTE_FORCE_COMMAND)) {
+            } else if (command.equals(BRUTE_FORCE)) {
                 result = caesarCipher.bruteForce(text);
                 filePath = addTagToFilePath(filePath, "[BRUTE_FORCE]");
             } else {
